@@ -46,8 +46,8 @@ your configuration for this sensor to work.
         name: "NIR"
 
 
-Configuration variables:
-------------------------
+Configuration variables
+-----------------------
 
 - **f1** (*Optional*): The reading for the 415nm sensor.
 
