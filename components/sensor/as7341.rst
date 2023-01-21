@@ -49,53 +49,63 @@ your configuration for this sensor to work.
 Configuration variables
 -----------------------
 
-- **f1** (*Optional*): The reading for the 415nm sensor.
+- **f1** (*Optional*): The reading for the 415nm channel.
 
   - **name** (**Required**, string): The name for the sensor.
   - All other options from :ref:`Sensor <config-sensor>`.
 
-- **f2** (*Optional*): The reading for the 445nm sensor.
+- **f2** (*Optional*): The reading for the 445nm channel.
 
   - **name** (**Required**, string): The name for the sensor.
   - All other options from :ref:`Sensor <config-sensor>`.
 
-- **f3** (*Optional*): The reading for the 480nm sensor.
+- **f3** (*Optional*): The reading for the 480nm channel.
 
   - **name** (**Required**, string): The name for the sensor.
   - All other options from :ref:`Sensor <config-sensor>`.
 
-- **f4** (*Optional*): The reading for the 515nm sensor.
+- **f4** (*Optional*): The reading for the 515nm channel.
 
   - **name** (**Required**, string): The name for the sensor.
   - All other options from :ref:`Sensor <config-sensor>`.
 
-- **f5** (*Optional*): The reading for the 555nm sensor.
+- **f5** (*Optional*): The reading for the 555nm channel.
 
   - **name** (**Required**, string): The name for the sensor.
   - All other options from :ref:`Sensor <config-sensor>`.
 
-- **f6** (*Optional*): The reading for the 590nm sensor.
+- **f6** (*Optional*): The reading for the 590nm channel.
 
   - **name** (**Required**, string): The name for the sensor.
   - All other options from :ref:`Sensor <config-sensor>`.
 
-- **f7** (*Optional*): The reading for the 630nm sensor.
+- **f7** (*Optional*): The reading for the 630nm channel.
 
   - **name** (**Required**, string): The name for the sensor.
   - All other options from :ref:`Sensor <config-sensor>`.
 
-- **f8** (*Optional*): The reading for the 680nm sensor.
+- **f8** (*Optional*): The reading for the 680nm channel.
 
   - **name** (**Required**, string): The name for the sensor.
   - All other options from :ref:`Sensor <config-sensor>`.
 
-- **gain** (*Optional*): Gain. Default is ``X8``. Must be one of:
+- **clear** (*Optional*): The reading for the clear channel.
+
+  - **name** (**Required**, string): The name for the sensor.
+  - All other options from :ref:`Sensor <config-sensor>`.
+
+- **nir** (*Optional*): The reading for the NIR (near-infrared) channel.
+
+  - **name** (**Required**, string): The name for the sensor.
+  - All other options from :ref:`Sensor <config-sensor>`.
+
+- **gain** (*Optional*): The gain used by the device. A higher gain may be more suitable for lower-light environments. Must be one of:
 
   - ``X0.5``
   - ``X1``
   - ``X2``
   - ``X4``
-  - ``X8``
+  - ``X8`` (*default*)
   - ``X16``
   - ``X32``
   - ``X64``
@@ -103,13 +113,24 @@ Configuration variables
   - ``X256``
   - ``X512``
 
-- **atime** (*Optional*): ATIME. Default is ``29``. Must be between ``0`` and ``255``.
-- **astep** (*Optional*): ASTEP. Default is ``599``. Must be between ``0`` and ``65534``.
+- **astep** (*Optional*): The number of integration steps. Default is ``599``. Must be between ``0`` and ``65534``.
+- **atime** (*Optional*): The integration time per step in increments of 2.78µs. Default is ``29``. Must be between ``0`` and ``255``.
 - All other options for I²C devices described at :ref:`I²C Bus <i2c>`.
+
+Integration time
+----------------
+
+The integration time determines how long a channel measurement takes and depends on ``ATIME`` and ``ASTEP``. The formula for the total integration time is:
+
+.. math::
+
+    \text{t} = \text{(ATIME + 1)} \times \text{(ASTEP + 1)} \times \text{2.78µS}
 
 See Also
 --------
 
 - :ref:`sensor-filters`
+- `Adafruit_AS7341 <https://github.com/adafruit/Adafruit_AS7341>`__
+- `SparkFun_AS7341X_Arduino_Library <https://github.com/sparkfun/SparkFun_AS7341X_Arduino_Library>`__
 - :apiref:`as7341/as7341.h`
 - :ghedit:`Edit`
